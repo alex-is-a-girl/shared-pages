@@ -1,0 +1,216 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MC2 Alpha Sample Build Schedule</title><style>
+*{box-sizing:border-box}body{margin:0;background:#F0EFEB;color:#1C1C1A;font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif}main{max-width:1600px;margin:auto;padding:36px 42px}header{display:flex;justify-content:space-between;align-items:start}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:600}h1{font-size:32px;margin:10px 0}p{line-height:1.7;margin:5px 0;color:#4A4944}.meta{text-align:right;font-size:12px;line-height:1.9}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin:26px 0 28px;border-top:1px solid #C6C5BF;border-bottom:1px solid #C6C5BF;padding:18px 0}.metric b{font-size:30px}.metric span{font-size:13px;margin-left:9px}.metric small{display:block;font-size:12px;color:#4A4944;margin-top:5px}.card{border-radius:24px;padding:0}h2{font-size:19px;margin:0 0 8px}.sub{font-size:12px;color:#4A4944;line-height:1.7}.toolbar{display:flex;gap:8px;margin:16px 0}button{font:inherit;font-size:12px;padding:8px 16px;background:transparent;border:1px solid #8F8E88;border-radius:99px;cursor:pointer;color:#1C1C1A}button.active{background:#1C1C1A;color:#F0EFEB}svg{display:block;width:100%;min-width:1060px}svg text{font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif}.scroll{overflow:auto}.src{font-size:11px;color:#4A4944;margin:12px 0 22px;line-height:1.8}.notes{display:grid;grid-template-columns:1fr 1fr;gap:30px;border-top:1px solid #C6C5BF;padding-top:18px}.notes h3{font-size:14px;margin:0 0 7px}.notes p{font-size:12px}table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}td,th{padding:9px 6px;text-align:center;border-bottom:1px solid #DEDDD6}td:first-child,th:first-child{text-align:left;white-space:nowrap}thead th{color:#4A4944;font-weight:600}tfoot{font-weight:700}details{margin-top:22px;font-size:12px}summary{cursor:pointer;font-weight:600}footer{border-top:1px solid #C6C5BF;padding-top:12px;margin-top:24px;font-size:11px;color:#4A4944}.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .9s ease both}@keyframes draw{to{stroke-dashoffset:0}}.fade{animation:fade .9s ease both}@keyframes fade{from{opacity:0}}@media(prefers-reduced-motion:reduce){.draw,.fade{animation:none;stroke-dasharray:none;stroke-dashoffset:0}}@media(max-width:700px){main{padding:22px}.metrics{grid-template-columns:1fr 1fr}header{display:block}.meta{text-align:left}.notes{grid-template-columns:1fr}}@media print{.toolbar,details{display:none}main{padding:15px}body{print-color-adjust:exact;-webkit-print-color-adjust:exact}.scroll{overflow:visible}svg{min-width:0}footer{margin-top:12px}}
+
+body{background:#FFFFFF;color:#172B4D}main{padding:32px 42px 26px}h1{font-size:28px;font-weight:600;margin:0}header{align-items:center}.meta{color:#526581}p,.sub{color:#526581}
+.metrics{border:0;background:#F4F8FD;border-radius:8px;padding:20px 24px;margin:24px 0 20px;gap:0}.metric{padding-left:24px;border-left:1px solid #DCE7F5}.metric:first-child{padding-left:0;border-left:0}.metric b{font-size:28px;font-weight:600;color:#2563BB}.metric small{color:#526581}.metric span{color:#526581}
+.toolbar{margin:0 0 18px;gap:6px}button{border:1px solid #DCE7F5;background:#FFFFFF;color:#526581;border-radius:5px;padding:8px 18px}button:hover{background:#F4F8FD}button.active{background:#2563BB;border-color:#2563BB;color:#FFFFFF}#print{margin-left:auto}
+svg{fill:#172B4D}.deliveries{margin-top:28px}h2{font-size:17px;font-weight:600}table{margin-top:14px}thead{background:#F4F8FD}thead th{color:#526581}td,th{border-bottom:1px solid #E5EDF6;padding:10px 6px}tfoot{background:#F4F8FD;color:#2563BB}details{color:#526581;margin-top:20px;font-size:11px}summary{font-weight:400}
+@media(max-width:700px){.metric{padding:10px;border:0}.metric:first-child{padding:10px}.toolbar{flex-wrap:wrap}#print{margin-left:0}}
+</style></head><body><main><header><div><h1>MC2 Alpha Sample Build Schedule</h1></div><div class="meta">计划版本：2026.10.30<br>排期范围：2026.10.27—2027.02.02</div></header>
+<section class="metrics"><div class="metric"><b>30</b><span>台计划样机</span><small>COHR LAB 3 台 + B&A 27 台</small></div><div class="metric"><b>20 / 6 / 4</b><span>台</span><small>客户 / COHR R&D / Pre-Qual</small></div><div class="metric"><b>12.22</b><span>B&A 首次发货</span><small>2026 年 · B&A 第1批，客户 1 台</small></div><div class="metric"><b>02.02</b><span>末次计划发货</span><small>2027 年 · B&A 第6批，4 台</small></div></section>
+<section class="card"><div class="toolbar"><button class="active" data-group="全部">全部批次</button><button data-group="COHR LAB">COHR LAB</button><button data-group="B&A">B&A</button><button id="print">打印 / 保存 PDF</button></div><div class="scroll"><svg id="timeline" role="img" aria-label="各样机批次从焊接到发货的周计划"></svg></div></section>
+<section class="deliveries"><h2>每周交付清单</h2><div class="scroll" id="shiptable"></div></section>
+
+<details><summary>查看原表逐项记录与单元格位置</summary><div id="raw"></div></details></main><script>
+/* ═══════════════════════════════════════════════════════════════
+   MONO TOKENS — 风格的唯一正本
+   所有 mono 图表（Chart.js / ECharts / 手写 SVG）共享这一份。
+   任何文件里出现与本文件冲突的颜色、字体、动画参数，以本文件为准。
+   用法：<script src="mono-tokens.js"><\/script>，全部挂在 window.MONO 上；
+   也可以直接把本文件内容内联进单文件 HTML（开源分发时推荐内联）。
+   ═══════════════════════════════════════════════════════════════ */
+(function (global) {
+  'use strict';
+
+  /* ── 1 · 色板 ──────────────────────────────────────────────
+     纸灰底 + 炭黑墨。没有彩色。明度即数据：最重要 = 最黑。   */
+  const INK   = '#1C1C1A';   // 墨：主数据、标题、强调
+  const PAPER = '#F0EFEB';   // 纸：页面底色 = 浅卡底色（卡片无边框，靠留白分卡）
+  const MUTED = '#8F8E88';   // 次级文字、副标题
+  const FAINT = '#C6C5BF';   // 来源行、辅助刻度
+  const GRID  = '#DEDDD6';   // 网格线、发丝线
+
+  // 7 级灰阶 ladder：多系列时按重要性从黑到浅分配
+  const L   = ['#1C1C1A', '#4A4944', '#6A6963', '#8F8E88', '#B0AFA9', '#C6C5BF', '#D8D7D1'];
+  // 5 级简版（waffle 等少系列场景）
+  const LAD = ['#1C1C1A', '#4A4944', '#8F8E88', '#B0AFA9', '#D8D7D1'];
+
+  // 暗卡（dark card）专用：底 #1C1C1A，其上的"墨"反转为纸色
+  const DARK = {
+    bg: '#1C1C1A',
+    ink: '#F0EFEB',          // 暗卡上的主数据色
+    muted: '#8F8E88',
+    faint: '#55554F',        // 暗卡来源行
+    grid: '#2E2D29',         // 暗卡网格 / 发丝线
+    gridSoft: '#2A2925',
+    ladder: ['#F0EFEB', '#DCDAD2', '#C9C7BD', '#B3B0A4', '#8F8E88', '#6A6963', '#4A4944'],
+  };
+
+  /* ── 2 · 字体 ────────────────────────────────────────────── */
+  const FONT = {
+    family: 'Inter',
+    // Google Fonts 引入行（放 <head>）：
+    link: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap',
+    title:    { size: 16.5, weight: 700, spacing: '-.02em' },  // 卡内 h2
+    titleBig: { size: 19,   weight: 700, spacing: '-.02em' },  // 独立大图 h2
+    sub:      { size: 11.5, weight: 400 },                     // 副标题（图例说明写在这里）
+    src:      { size: 9.5,  weight: 500, spacing: '.08em' },   // 来源行，全大写
+    value:    { weight: 800 },                                 // 图内数值一律 800
+    axis:     { size: 9.5,  weight: 600 },                     // 轴标签
+    // SVG 内最小字号下限：半宽卡 6.5px，通栏/大图 5.5px。低于下限改 hover 出。
+    minHalf: 6.5, minWide: 5.5,
+  };
+
+  /* ── 3 · 形状 ────────────────────────────────────────────── */
+  const SHAPE = {
+    cardRadius: 24,          // 卡片圆角
+    cardPad: '28px 28px 20px',
+    barRadius: 99,           // 柱端胶囊圆角（竖柱只圆上端，横柱只圆外端）
+    tooltipRadius: 12,
+  };
+
+  /* ── 4 · 动画性格 ────────────────────────────────────────
+     快进快停，quarticOut / cubicOut，不弹跳（elasticOut 只给波浪入场）。 */
+  const MOTION = {
+    enter: 900,              // 常规入场 ms
+    enterSlow: 1200,         // 大元素 / 关系图
+    easing: 'quarticOut',
+    staggerDot: 12,          // 点阵逐个延迟 ms（8–15 区间）
+    staggerBar: 100,         // 条形逐根延迟 ms（80–130 区间）
+    // CSS 动画类（手写 SVG 用）：pop 缩放入场 / fade 淡入 / draw 描线
+    css: `
+  .pop{transform-box:fill-box;transform-origin:center;animation:pop .5s cubic-bezier(.2,.7,.3,1.3) both}
+  @keyframes pop{from{transform:scale(0)}to{transform:none}}
+  .fade{animation:fade .9s ease both}
+  @keyframes fade{from{opacity:0}}
+  .draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1s cubic-bezier(.4,0,.2,1) both}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @media (prefers-reduced-motion:reduce){
+    .pop,.fade{animation:none}
+    .draw{animation:none;stroke-dasharray:none;stroke-dashoffset:0}
+  }`,
+  };
+
+  /* ── 5 · Tooltip ─────────────────────────────────────────
+     浅卡用黑底纸字，暗卡用纸底黑字。ECharts 直接展开这两个对象。 */
+  const tipLight = { backgroundColor: INK, borderWidth: 0, padding: [10, 14],
+    textStyle: { color: PAPER, fontFamily: 'Inter', fontSize: 12 } };
+  const tipDark  = { backgroundColor: PAPER, borderWidth: 0, padding: [10, 14],
+    textStyle: { color: INK, fontFamily: 'Inter', fontSize: 12 } };
+
+  /* ── 6 · 确定性伪随机 ────────────────────────────────────
+     演示数据一律用它，不用 Math.random()——刷新必须长一样，
+     否则截图 / 录屏 / 回归对比全部失效。                       */
+  const rnd = (i, k) => Math.abs(((i * 73856093) ^ (k * 19349663)) % 1000) / 1000;
+
+  /* ── 7 · 几何 ────────────────────────────────────────────── */
+  const D2R = Math.PI / 180;
+  const pol = (cx, cy, r, deg) => [cx + r * Math.cos(deg * D2R), cy + r * Math.sin(deg * D2R)];
+  // 环形扇区 path（cornerRadius 自己在调用处用 ECharts sector 或手动倒角）
+  const sect = (cx, cy, r0, r1, a0, a1) => {
+    const big = a1 - a0 > 180 ? 1 : 0;
+    const [xa, ya] = pol(cx, cy, r1, a0), [xb, yb] = pol(cx, cy, r1, a1);
+    const [xc, yc] = pol(cx, cy, r0, a1), [xd, yd] = pol(cx, cy, r0, a0);
+    return `M${xa} ${ya} A${r1} ${r1} 0 ${big} 1 ${xb} ${yb} L${xc} ${yc} A${r0} ${r0} 0 ${big} 0 ${xd} ${yd} Z`;
+  };
+  // 手绘感圆（editorial 系气泡用）：圆周叠两个慢波 + 噪声，seed 定形
+  const blob = (x, y, r, seed) => {
+    const n = Math.max(14, Math.round(r * 1.6)), pts = [];
+    for (let t = 0; t < n; t++) {
+      const a = t / n * Math.PI * 2;
+      const w = 1 + .055 * Math.sin(a * 2 + seed * 7) + .04 * Math.sin(a * 3 + seed * 13)
+              + (rnd(seed + t, 3) - .5) * .03;
+      pts.push([x + Math.cos(a) * r * w, y + Math.sin(a) * r * w]);
+    }
+    let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+    for (let t = 0; t < n; t++) {
+      const p = pts[t], q = pts[(t + 1) % n];
+      d += ` Q${p[0].toFixed(1)} ${p[1].toFixed(1)} ${((p[0]+q[0])/2).toFixed(1)} ${((p[1]+q[1])/2).toFixed(1)}`;
+    }
+    return d + ' Z';
+  };
+
+  /* ── 8 · SVG 快捷 ────────────────────────────────────────── */
+  const NS = 'http://www.w3.org/2000/svg';
+  const el  = (p, t, a) => { const n = document.createElementNS(NS, t);
+    for (const k in a) n.setAttribute(k, a[k]); p.appendChild(n); return n; };
+  const txt = (p, a, s) => { const n = el(p, 'text', a); n.textContent = s; return n; };
+  const tip = (n, s) => { const t = document.createElementNS(NS, 'title');
+    t.textContent = s; n.appendChild(t); };
+
+  /* ── 9 · 统一 reveal：滚入视野才播，点击重播 ──────────────
+     带 timer 登记（keep），重播前清干净，防动画叠加。          */
+  const timers = {};
+  const keep = (id, t) => { (timers[id] = timers[id] || []).push(t); };
+  const obsReveal = (id, fn) => {
+    const n = document.getElementById(id);
+    const go = () => {
+      (timers[id] || []).forEach(clearInterval); timers[id] = [];
+      if (n.tagName === 'svg' || n.tagName === 'SVG') n.innerHTML = '';
+      fn(n);
+    };
+    const io = new IntersectionObserver(es => {
+      if (es[0].isIntersecting) { go(); io.disconnect(); }
+    }, { threshold: .3 });
+    io.observe(n);
+    n.style.cursor = 'pointer';
+    n.addEventListener('click', go);
+  };
+  // ECharts 版 reveal
+  const eReveal = (id, opt) => obsReveal(id, elDom => {
+    const g = echarts.getInstanceByDom(elDom) || echarts.init(elDom);
+    g.clear(); g.setOption(opt);
+  });
+
+  /* ── 10 · 卡片骨架（生成新图时照抄这个结构） ──────────────
+     <div class="card [dark] [wide]">
+       <h2>结论式标题</h2>
+       <div class="sub">副标题 · 图例说明 · 时间范围</div>
+       <div class="ch" id="xx"></div>  或  <svg id="xx" viewBox="0 0 400 320">
+       <div class="src">图型名 · 系列名 · 数据来源（全大写）</div>
+     </div>                                                        */
+  const CARD_CSS = `
+  :root{--bg:${PAPER};--dark:${DARK.bg};--ink:${INK};--muted:${MUTED};--faint:${FAINT};--grid:${GRID}}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);font-family:'Inter',sans-serif;color:var(--ink);padding:40px;-webkit-font-smoothing:antialiased}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1400px;margin:0 auto}
+  .card{background:var(--bg);border-radius:${SHAPE.cardRadius}px;padding:${SHAPE.cardPad}}
+  .card.dark{background:var(--dark);color:${PAPER}}
+  .card.dark .sub{color:${MUTED}}
+  .card.dark .src{color:${DARK.faint}}
+  .card.wide{grid-column:1/-1}
+  h2{font-weight:${FONT.title.weight};font-size:${FONT.title.size}px;letter-spacing:${FONT.title.spacing};margin-bottom:3px}
+  .sub{font-size:${FONT.sub.size}px;color:var(--muted);margin-bottom:14px}
+  .src{font-size:${FONT.src.size}px;color:var(--faint);margin-top:10px;letter-spacing:${FONT.src.spacing};font-weight:${FONT.src.weight}}
+  .ch{height:320px}
+  svg text{font-family:'Inter',sans-serif}` + MOTION.css;
+
+  global.MONO = { INK, PAPER, MUTED, FAINT, GRID, L, LAD, DARK,
+    FONT, SHAPE, MOTION, tipLight, tipDark,
+    rnd, pol, sect, blob, el, txt, tip, obsReveal, eReveal, keep, CARD_CSS };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+const WEEKS=["2026-10-27", "2026-11-03", "2026-11-10", "2026-11-17", "2026-11-24", "2026-12-01", "2026-12-08", "2026-12-15", "2026-12-22", "2026-12-29", "2027-01-05", "2027-01-12", "2027-01-19", "2027-01-26", "2027-02-02"];const BATCHES=[{"name": "COHR #1", "qty": 1, "group": "COHR LAB", "stages": [[0, 0, "焊接"], [1, 3, "组装"], [4, 5, "测试"], [6, 6, "SVT"]], "ships": [[7, "客户", 1]], "note": "12/08：SVT Sainty / SVT"}, {"name": "COHR #2", "qty": 1, "group": "COHR LAB", "stages": [[0, 0, "焊接"], [1, 3, "组装"], [4, 5, "测试"]], "ships": [[6, "R&D", 1]], "note": "12/08：发往 COHR R&D"}, {"name": "COHR #3", "qty": 1, "group": "COHR LAB", "stages": [[0, 0, "焊接"], [1, 3, "组装"], [4, 5, "测试"], [6, 7, "测试*"]], "ships": [[8, "R&D", 1]], "note": "*12/08–12/15 在 B&A 行继续标注测试；12/22 发往 COHR R&D"}, {"name": "B&A 第1批", "qty": 3, "group": "B&A", "stages": [[2, 2, "焊接"], [3, 5, "组装"], [6, 7, "测试"]], "ships": [[8, "客户", 1], [9, "客户", 2]], "note": "客户：12/22 ×1，12/29 ×2"}, {"name": "B&A 第2批", "qty": 4, "group": "B&A", "stages": [[5, 5, "焊接"], [6, 7, "组装"], [8, 9, "测试"]], "ships": [[9, "R&D", 2], [10, "客户", 2]], "note": "R&D：12/29 ×2；客户：01/05 ×2"}, {"name": "B&A 第3批", "qty": 4, "group": "B&A", "stages": [[7, 7, "焊接"], [8, 9, "组装"], [10, 10, "测试"]], "ships": [[10, "R&D", 2], [11, "客户", 2]], "note": "R&D：01/05 ×2；客户：01/12 ×2"}, {"name": "B&A 第4批", "qty": 4, "group": "B&A", "stages": [[9, 9, "焊接"], [10, 10, "组装"], [11, 11, "测试"]], "ships": [[11, "Pre-Qual", 2], [12, "客户", 2]], "note": "Pre-Qual：01/12 ×2；客户：01/19 ×2"}, {"name": "B&A 第5批", "qty": 6, "group": "B&A", "stages": [[10, 10, "焊接"], [11, 11, "组装"], [12, 12, "测试"]], "ships": [[12, "Pre-Qual", 2], [12, "客户", 2], [13, "客户", 2]], "note": "Pre-Qual：01/19 ×2；客户：01/19 ×2，01/26 ×2"}, {"name": "B&A 第6批", "qty": 6, "group": "B&A", "stages": [[11, 11, "焊接"], [12, 12, "组装"], [13, 13, "测试"]], "ships": [[13, "客户", 2], [14, "客户", 4]], "note": "客户：01/26 ×2，02/02 ×4"}];const RAW=[{"cell": "B4", "task": "有源器件焊接", "week": "2026-10-27", "text": "#1, #2, #3"}, {"cell": "C5", "task": "板卡组装", "week": "2026-11-03", "text": "#1, #2, #3"}, {"cell": "D5", "task": "板卡组装", "week": "2026-11-10", "text": "#1, #2, #3"}, {"cell": "E5", "task": "板卡组装", "week": "2026-11-17", "text": "#1, #2, #3"}, {"cell": "F6", "task": "板卡生产测试", "week": "2026-11-24", "text": "#1, #2, #3"}, {"cell": "G6", "task": "板卡生产测试", "week": "2026-12-01", "text": "#1, #2, #3"}, {"cell": "H7", "task": "SVT Sainty / SVT", "week": "2026-12-08", "text": "#1"}, {"cell": "I8", "task": "发货 客户", "week": "2026-12-15", "text": "#1"}, {"cell": "H9", "task": "发货 COHR R&D", "week": "2026-12-08", "text": "#2"}, {"cell": "D11", "task": "有源器件焊接", "week": "2026-11-10", "text": "1st 3pcs"}, {"cell": "G11", "task": "有源器件焊接", "week": "2026-12-01", "text": "2nd 4pcs"}, {"cell": "I11", "task": "有源器件焊接", "week": "2026-12-15", "text": "3rd 4pcs"}, {"cell": "K11", "task": "有源器件焊接", "week": "2026-12-29", "text": "4th 4pcs"}, {"cell": "L11", "task": "有源器件焊接", "week": "2027-01-05", "text": "5th 6pcs"}, {"cell": "M11", "task": "有源器件焊接", "week": "2027-01-12", "text": "6th 6pcs"}, {"cell": "E12", "task": "板卡组装", "week": "2026-11-17", "text": "1st 3pcs"}, {"cell": "F12", "task": "板卡组装", "week": "2026-11-24", "text": "1st 3pcs"}, {"cell": "G12", "task": "板卡组装", "week": "2026-12-01", "text": "1st 3pcs"}, {"cell": "H12", "task": "板卡组装", "week": "2026-12-08", "text": "2nd 4pcs"}, {"cell": "I12", "task": "板卡组装", "week": "2026-12-15", "text": "2nd 4pcs"}, {"cell": "J12", "task": "板卡组装", "week": "2026-12-22", "text": "3rd 4pcs"}, {"cell": "K12", "task": "板卡组装", "week": "2026-12-29", "text": "3rd 4pcs"}, {"cell": "L12", "task": "板卡组装", "week": "2027-01-05", "text": "4th 4pcs"}, {"cell": "M12", "task": "板卡组装", "week": "2027-01-12", "text": "5th 6pcs"}, {"cell": "N12", "task": "板卡组装", "week": "2027-01-19", "text": "6th 6pcs"}, {"cell": "H13", "task": "板卡生产测试", "week": "2026-12-08", "text": "#3\n1st 3pcs"}, {"cell": "I13", "task": "板卡生产测试", "week": "2026-12-15", "text": "#3\n1st 3pcs"}, {"cell": "J13", "task": "板卡生产测试", "week": "2026-12-22", "text": "2nd 4pcs"}, {"cell": "K13", "task": "板卡生产测试", "week": "2026-12-29", "text": "2nd 4pcs"}, {"cell": "L13", "task": "板卡生产测试", "week": "2027-01-05", "text": "3rd 4pcs"}, {"cell": "M13", "task": "板卡生产测试", "week": "2027-01-12", "text": "4th 4pcs"}, {"cell": "N13", "task": "板卡生产测试", "week": "2027-01-19", "text": "5th 6pcs"}, {"cell": "O13", "task": "板卡生产测试", "week": "2027-01-26", "text": "6th 6pcs"}, {"cell": "J14", "task": "发货 客户", "week": "2026-12-22", "text": "1st 1pcs"}, {"cell": "K14", "task": "发货 客户", "week": "2026-12-29", "text": "1st 2pcs"}, {"cell": "L14", "task": "发货 客户", "week": "2027-01-05", "text": "2nd 2pcs"}, {"cell": "M14", "task": "发货 客户", "week": "2027-01-12", "text": "3rd 2pcs"}, {"cell": "N14", "task": "发货 客户", "week": "2027-01-19", "text": "4th 2pcs\n5th 2pcs"}, {"cell": "O14", "task": "发货 客户", "week": "2027-01-26", "text": "5th 2pcs\n6th 2pcs"}, {"cell": "P14", "task": "发货 客户", "week": "2027-02-02", "text": "6th 4pcs"}, {"cell": "J15", "task": "发货 COHR R&D", "week": "2026-12-22", "text": "#3"}, {"cell": "K15", "task": "发货 COHR R&D", "week": "2026-12-29", "text": "2nd 2pcs"}, {"cell": "L15", "task": "发货 COHR R&D", "week": "2027-01-05", "text": "3rd 2pcs"}, {"cell": "M16", "task": "发货 Pre-Qual", "week": "2027-01-12", "text": "4th 2pcs"}, {"cell": "N16", "task": "发货 Pre-Qual", "week": "2027-01-19", "text": "5th 2pcs"}];
+const CUSTOM={BG:'#FFFFFF',TXT:'#172B4D',MUT:'#526581',GRID:'#E5EDF6',DATA:'#2563BB',HERO:'#C65A0A',LIGHT:'#E8F1FC',MID:'#C0D8F5',FAINT:'#B5C9E1'};
+const {el,txt,tip}=MONO;let current='全部';
+const LANES=BATCHES.flatMap(b=>b.name==='COHR #3'?[
+ {...b,stages:b.stages.slice(0,3),ships:[],note:'转入 B&A 测试'},
+ {...b,name:'B&A · COHR #3',group:'B&A',received:true,stages:[[6,7,'测试']],ships:[[8,'R&D',1]],note:'COHR #3 转入 B&A 测试，12/22 发往 COHR R&D'}
+]:[b]);
+function render(){const s=document.getElementById('timeline');s.innerHTML='';const data=LANES.filter(b=>current==='全部'||b.group===current);const left=180,step=85,row=70,top=70,H=top+data.length*row+8;s.setAttribute('viewBox',`0 0 1470 ${H}`);const xx=i=>left+step*i;
+for(let i=0;i<15;i++){el(s,'line',{x1:xx(i),y1:48,x2:xx(i),y2:H-8,stroke:CUSTOM.GRID,'stroke-width':1});txt(s,{x:xx(i)+4,y:38,'text-anchor':'start','font-size':12,'font-weight':600,fill:CUSTOM.TXT},WEEKS[i].slice(5).replace('-','/'));}txt(s,{x:xx(0),y:16,'font-size':12,'font-weight':700},'2026');txt(s,{x:xx(10),y:16,'font-size':12,'font-weight':700},'2027');el(s,'line',{x1:xx(10),y1:22,x2:xx(10),y2:H-8,stroke:CUSTOM.FAINT,'stroke-width':1.5});
+data.forEach((b,j)=>{const y=top+j*row;txt(s,{x:0,y:y+8,'font-size':14,'font-weight':700},b.name);txt(s,{x:0,y:y+29,'font-size':11,fill:CUSTOM.MUT},b.received?'接收 COHR #3 · 1 台':`${b.group} · ${b.qty} 台`);el(s,'line',{x1:0,y1:y+60,x2:1455,y2:y+60,stroke:CUSTOM.GRID,'stroke-width':.7});
+const end=Math.max(...b.ships.map(x=>x[0]),...b.stages.map(x=>x[1]));el(s,'line',{x1:xx(b.stages[0][0])+8,y1:y+9,x2:xx(end)+step/2,y2:y+9,stroke:CUSTOM.FAINT,'stroke-width':1,'stroke-dasharray':'3 4'});
+b.stages.forEach(([a,z,label],k)=>{const g=el(s,'g',{class:'fade',style:`animation-delay:${j*.04}s`});const color=label==='焊接'?CUSTOM.LIGHT:label==='组装'?CUSTOM.MID:CUSTOM.DATA;el(g,'rect',{x:xx(a)+3,y:y-3,width:(z-a+1)*step-6,height:24,rx:5,fill:color});txt(g,{x:xx(a)+(z-a+1)*step/2,y:y+13,'text-anchor':'middle','font-size':12,'font-weight':600,fill:['焊接','组装'].includes(label)?CUSTOM.TXT:CUSTOM.BG},label.replace('*',''));tip(g,`${b.name} · ${label} · ${WEEKS[a]}${z!==a?' 至 '+WEEKS[z]:''} 周列 · ${b.qty} 台`);});
+const byWeek={};b.ships.forEach(([w,d,n])=>{(byWeek[w]??=[]).push(`${d}×${n}${b.received?' (#3)':''}`)});Object.entries(byWeek).forEach(([w,labels])=>{const x=xx(+w)+step/2;const concurrent=b.stages.some(([a,z])=>+w>=a&&+w<=z);const cy=concurrent?y+35:y+9;const g=el(s,'g',{});el(g,'path',{d:`M${x} ${cy-5}l5 5 -5 5 -5 -5Z`,fill:CUSTOM.HERO});txt(g,{x,y:cy+17,'text-anchor':'middle','font-size':labels.join(' / ').length>12?9.5:11,'font-weight':600,fill:CUSTOM.HERO},labels.join(' / '));tip(g,`${b.name} · ${WEEKS[w]} · ${labels.join('，')}\n${b.note}`);});});
+const origin=data.findIndex(b=>b.name==='COHR #3');const receiver=data.findIndex(b=>b.received);
+const defs=el(s,'defs',{});const marker=el(defs,'marker',{id:'transfer-arrow',viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:7,markerHeight:7,orient:'auto'});el(marker,'path',{d:'M0 0 L10 5 L0 10 Z',fill:CUSTOM.DATA});
+if(origin>=0&&receiver>=0){
+ const sx=xx(6)-6,sy=top+origin*row+9,tx=xx(6)+6,ty=top+receiver*row+9;
+ const path=el(s,'path',{id:'cohr-transfer',d:`M${sx} ${sy} C${sx+70} ${sy+10} ${tx-70} ${ty-10} ${tx} ${ty}`,fill:'none',stroke:CUSTOM.DATA,'stroke-width':2,'stroke-dasharray':'5 4','marker-end':'url(#transfer-arrow)'});
+ tip(path,'COHR #3 → B&A 测试 · 12/08–12/15');
+ txt(s,{x:sx+28,y:(sy+ty)/2+5,'font-size':11,'font-weight':600,fill:CUSTOM.DATA},'#3 转入 B&A');
+}else if(origin>=0){txt(s,{x:xx(6)+6,y:top+origin*row+14,'font-size':11,fill:CUSTOM.DATA},'↳ #3 转入 B&A 测试');}
+const ws=[...new Set(data.flatMap(b=>b.ships.map(x=>x[0])))].sort((a,b)=>a-b);let html='<table><thead><tr><th>发货去向</th>'+ws.map(w=>`<th>${WEEKS[w].slice(0,4)}<br>${WEEKS[w].slice(5).replace('-','/')}</th>`).join('')+'<th>合计</th></tr></thead><tbody>';const dest=['客户','R&D','Pre-Qual'];let all=Array(ws.length).fill(0);for(const d of dest){let vals=ws.map(w=>data.reduce((sum,b)=>sum+b.ships.filter(x=>x[0]===w&&x[1]===d).reduce((n,x)=>n+x[2],0),0));vals.forEach((v,i)=>all[i]+=v);html+=`<tr><td>${d==='R&D'?'COHR R&D':d}</td>${vals.map(v=>`<td>${v||'—'}</td>`).join('')}<td><b>${vals.reduce((a,b)=>a+b,0)}</b></td></tr>`}html+='</tbody><tfoot><tr><td>本周合计</td>'+all.map(v=>`<td>${v}</td>`).join('')+`<td>${all.reduce((a,b)=>a+b,0)}</td></tr></tfoot></table>`;document.getElementById('shiptable').innerHTML=html;}
+document.querySelectorAll('[data-group]').forEach(btn=>btn.onclick=()=>{current=btn.dataset.group;document.querySelectorAll('[data-group]').forEach(b=>b.classList.toggle('active',b===btn));render()});document.getElementById('print').onclick=()=>window.print();document.getElementById('raw').innerHTML='<table><tr><th>位置</th><th>任务</th><th>周列日期</th><th>原文</th></tr>'+RAW.map(r=>`<tr><td>${r.cell}</td><td>${r.task}</td><td>${r.week}</td><td>${r.text.replaceAll('\n',' / ')}</td></tr>`).join('')+'</table>';render();
+</script></body></html>
